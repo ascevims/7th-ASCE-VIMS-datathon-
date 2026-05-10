@@ -1,3 +1,32 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e55c5ba74ca7aad4f43eaf29e05f954bb0201cb3e0d2808cd263878dd2134c2d
-size 217055
+Directory Structure
+The dataset is organized by scene, with each scene containing consistent sub-directories for images, camera parameters, and ground truth data.
+vims_gs/
+├── classroom/
+│   ├── images/             # High-resolution scene captures
+│   ├── sparse/0             # COLMAP camera poses and calibration
+│   ├── ground_truth.ply    # LiDAR scan (Ground Truth)
+│   └── split.json          # Train/Test partition metadata
+├── lounge/
+│   ├── images/
+│   ├── sparse/0
+│   ├── ground_truth.ply
+│   └── split.json
+└── lobby/
+    ├── images/
+    ├── sparse/0
+    ├── ground_truth.ply
+    └── split.json
+
+Data Component Details
+1. images/
+Contains the raw image files (e.g., .jpg or .png) captured for the specific scene.
+2. sparse/0
+Contains the camera registration data exported in COLMAP format. This folder typically includes:
+cameras.bin: Camera model and intrinsic parameters.
+images.bin: Registration info and extrinsic parameters for each image.
+points3D.bin: Sparse point cloud generated during SfM.
+3. ground_truth.ply
+A dense 3D point cloud or mesh generated from a LiDAR scan. 
+4. split.json
+A JSON file defining the data distribution for machine learning pipelines.
+
